@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comunidade de Apoio e Conexão</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link rel="stylesheet" href="css/styles 1.css">
+	<link rel="icon" href="https://miro.medium.com/0*hfAvduft0Gc9QA-X.jpg">
+
+</head>
+<body>
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="index 3 1.html#home"><i class="fas fa-hands-helping"></i> Comunidade de Apoio</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="index 3 1.html">Home</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="agendamento.html">Agendamento</a></li>
+					<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+					<li class="nav-item"><a class="nav-link" href="index 3 1.html#grupos">Grupos</a></li>
+					<li class="nav-item"><a class="nav-link" href="conta.html">Cadastro</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Espaço para compensar navbar fixa -->
+	<div style="height: 80px;"></div>
+
+	<!-- Agendamento Section -->
+	<section id="agendamento" class="py-5">
+		<div class="container">
+			<h2 class="text-center mb-5">Agendamento</h2>
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="card agendamento-card">
+						<div class="card-body">
+							<form id="form-agendamento">
+								<div class="row g-3">
+									<div class="col-md-6">
+										<label for="nome" class="form-label">Nome</label>
+										<input type="text" class="form-control" id="nome" name="nome" required>
+									</div>
+									<div class="col-md-6">
+										<label for="email" class="form-label">E-mail</label>
+										<input type="email" class="form-control" id="email" name="email" required>
+									</div>
+									<div class="col-md-6">
+										<label for="servico" class="form-label">Serviço</label>
+										<select id="servico" name="servico" class="form-select" required>
+											<option value="" selected disabled>Selecione um serviço</option>
+											<option>Experiências Compartilhadas</option>
+											<option>Sessão Educacional</option>
+											<option>Suporte Emocional</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<label for="data" class="form-label">Data</label>
+										<input type="date" class="form-control" id="data" name="data" required>
+									</div>
+									<div class="col-md-3">
+										<label for="hora" class="form-label">Hora</label>
+										<input type="time" class="form-control" id="hora" name="hora" required>
+									</div>
+									<div class="col-12">
+										<label for="mensagem" class="form-label">Mensagem (opcional)</label>
+										<textarea id="mensagem" name="mensagem" class="form-control" rows="4" placeholder="Conte-nos brevemente sua necessidade"></textarea>
+									</div>
+								</div>
+								<div class="d-flex align-items-center justify-content-between mt-4">
+									<small class="text-muted">Ao enviar, você será direcionado para o WhatsApp.</small>
+									<button type="submit" class="btn btn-primary"><i class="fab fa-whatsapp me-2"></i>Enviar pelo WhatsApp</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="py-4">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<h5><i class="fas fa-hands-helping me-2"></i>Comunidade de Apoio e Conexão</h5>
+					<p><i class="fas fa-phone me-2"></i>(12) 3456-7890</p>
+					<p><i class="fas fa-envelope me-2"></i>comunidadeapoio@gmail.com</p>
+					<p><i class="fas fa-map-marker-alt me-2"></i>Rua Prates, 194 - Bom Retiro, São Paulo - SP</p>
+				</div>
+				<div class="col-md-6 text-end">
+					<div class="social-links mb-3">
+						<a href="#" class="text-primary me-3"><i class="fab fa-facebook fa-2x"></i></a>
+						<a href="#" class="text-primary me-3"><i class="fab fa-instagram fa-2x"></i></a>
+						<a href="#" class="text-primary"><i class="fab fa-whatsapp fa-2x"></i></a>
+					</div>
+					<p>© 2024 Comunidade de Apoio e Conexão</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const selectServico = document.getElementById('servico');
+			const form = document.getElementById('form-agendamento');
+
+			const preselect = new URLSearchParams(location.search).get('servico');
+			if (preselect && selectServico) {
+				selectServico.value = preselect;
+			}
+
+			form?.addEventListener('submit', function (e) {
+				e.preventDefault();
+				const nome = document.getElementById('nome').value.trim();
+				const email = document.getElementById('email').value.trim();
+				const servico = selectServico?.value || '';
+				const data = document.getElementById('data').value;
+				const hora = document.getElementById('hora').value;
+				const mensagem = document.getElementById('mensagem').value.trim();
+
+				if (!servico) {
+					selectServico?.focus();
+					return;
+				}
+
+				const texto = `Olá! Gostaria de agendar:%0A- Nome: ${encodeURIComponent(nome)}%0A- E-mail: ${encodeURIComponent(email)}%0A- Serviço: ${encodeURIComponent(servico)}%0A- Data: ${encodeURIComponent(data)}%0A- Hora: ${encodeURIComponent(hora)}${mensagem ? `%0A- Mensagem: ${encodeURIComponent(mensagem)}` : ''}`;
+
+				const phone = '5511999999999';
+				const url = `https://wa.me/${phone}?text=${texto}`;
+				window.open(url, '_blank');
+			});
+		});
+	</script>
+</body>
+</html>
+
+

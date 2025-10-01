@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Comunidade de Apoio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles 1.css">
+    <link rel="icon" href="https://miro.medium.com/0*hfAvduft0Gc9QA-X.jpg">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index 3 1.html"><i class="fas fa-hands-helping"></i> Comunidade de Apoio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index 3 1.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="agendamento.html">Agendamento</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="conta.html">Cadastro</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="height: 80px;"></div>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Blog da Comunidade</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <form id="post-form">
+                                <div class="mb-3">
+                                    <label for="author" class="form-label">Seu nome</label>
+                                    <input type="text" id="author" class="form-control" placeholder="Como você quer ser identificado" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="content" class="form-label">Sua mensagem</label>
+                                    <textarea id="content" class="form-control" rows="3" placeholder="Compartilhe sua experiência, dúvida ou informação" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Imagem (opcional)</label>
+                                    <input type="file" id="image" class="form-control" accept="image/*">
+                                </div>
+                                <div class="d-flex justify-content-end gap-2">
+                                    <button type="reset" class="btn btn-secondary">Limpar</button>
+                                    <button type="submit" class="btn btn-primary">Publicar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="feed"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-hands-helping me-2"></i>Comunidade de Apoio e Conexão</h5>
+                    <p><i class="fas fa-phone me-2"></i>(12) xxxx-xxxx</p>
+                    <p><i class="fas fa-envelope me-2"></i>comunidadeapoio@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Rua Prates, 194 - Bom Retiro, São Paulo - SP</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <div class="social-links mb-3">
+                        <a href="#" class="text-primary me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-primary me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-primary"><i class="fab fa-whatsapp fa-2x"></i></a>
+                    </div>
+                    <p>© 2024 Comunidade de Apoio e Conexão</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    (function() {
+        const STORAGE_KEY = 'communityPostsV1';
+        const form = document.getElementById('post-form');
+        const feed = document.getElementById('feed');
+
+        function readPosts() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                console.warn('Storage read failed', e);
+                return [];
+            }
+        }
+
+        function writePosts(posts) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+            } catch (e) {
+                console.warn('Storage write failed', e);
+            }
+        }
+
+        function fileToDataUrl(file) {
+            return new Promise((resolve) => {
+                if (!file) return resolve('');
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result || '');
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function renderPosts() {
+            const posts = readPosts().sort((a, b) => b.createdAt - a.createdAt);
+            if (posts.length === 0) {
+                feed.innerHTML = '<div class="text-center text-muted">Nenhuma postagem ainda. Seja o primeiro a publicar!</div>';
+                return;
+            }
+            feed.innerHTML = posts.map((p, idx) => {
+                const id = p.id;
+                const img = p.image ? `<img src="${p.image}" class="img-fluid rounded mb-3" alt="imagem do post">` : '';
+                return `
+                <div class="card mb-4" data-id="${id}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <strong>${p.author || 'Anônimo'}</strong>
+                                <div class="text-muted small">${new Date(p.createdAt).toLocaleString()}</div>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" data-id="${id}"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <p>${p.content.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</p>
+                        ${img}
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-outline-primary" data-action="react" data-type="like" data-id="${id}"><i class="far fa-thumbs-up me-1"></i><span>${p.reactions.like||0}</span></button>
+                            <button class="btn btn-sm btn-outline-danger" data-action="react" data-type="love" data-id="${id}"><i class="far fa-heart me-1"></i><span>${p.reactions.love||0}</span></button>
+                            <button class="btn btn-sm btn-outline-success" data-action="react" data-type="clap" data-id="${id}"><i class="far fa-handshake me-1"></i><span>${p.reactions.clap||0}</span></button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function addPost(post) {
+            const posts = readPosts();
+            posts.push(post);
+            writePosts(posts);
+            renderPosts();
+        }
+
+        function updateReaction(id, type) {
+            const posts = readPosts();
+            const idx = posts.findIndex(p => p.id === id);
+            if (idx === -1) return;
+            posts[idx].reactions[type] = (posts[idx].reactions[type] || 0) + 1;
+            writePosts(posts);
+            renderPosts();
+        }
+
+        function deletePost(id) {
+            const posts = readPosts().filter(p => p.id !== id);
+            writePosts(posts);
+            renderPosts();
+        }
+
+        form?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
+            const author = document.getElementById('author').value.trim();
+            const content = document.getElementById('content').value.trim();
+            const imageFile = document.getElementById('image').files?.[0];
+            const image = await fileToDataUrl(imageFile);
+            const post = {
+                id: 'p_' + Date.now() + '_' + Math.random().toString(36).slice(2,8),
+                author,
+                content,
+                image,
+                reactions: { like: 0, love: 0, clap: 0 },
+                createdAt: Date.now()
+            };
+            addPost(post);
+            form.reset();
+        });
+
+        feed.addEventListener('click', (e) => {
+            const target = e.target.closest('button');
+            if (!target) return;
+            const action = target.getAttribute('data-action');
+            const id = target.getAttribute('data-id');
+            if (action === 'react') {
+                const type = target.getAttribute('data-type');
+                updateReaction(id, type);
+            } else if (action === 'delete') {
+                if (confirm('Apagar esta postagem?')) deletePost(id);
+            }
+        });
+
+        renderPosts();
+    })();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidade de Apoio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles 1.css">
+    <link rel="icon" href="https://miro.medium.com/0*hfAvduft0Gc9QA-X.jpg">
+
+</head>
+<body>
+    
+</body>
+</html>

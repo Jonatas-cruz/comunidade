@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Comunidade de Apoio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles 1.css">
+    <link rel="icon" href="https://miro.medium.com/0*hfAvduft0Gc9QA-X.jpg">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index 3 1.html"><i class="fas fa-hands-helping"></i> Comunidade de Apoio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index 3 1.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="agendamento.html">Agendamento</a></li>
+                    <li class="nav-item"><a class="nav-link" href="agendamento.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="agendamento.html">Grupos</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="conta.html">Cadastro</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="height: 80px;"></div>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Cadastro e Questionário</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="form-cadastro" novalidate>
+                                <h5 class="mb-3">Dados Pessoais</h5>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label for="nome" class="form-label">Nome completo</label>
+                                        <input type="text" class="form-control" id="nome" name="nome" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">E-mail</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="telefone" class="form-label">Telefone (WhatsApp)</label>
+                                        <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(12) 99999-9999" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="nascimento" class="form-label">Data de nascimento</label>
+                                        <input type="date" class="form-control" id="nascimento" name="nascimento" required>
+                                    </div>
+                                </div>
+
+                                <h5 class="mb-3">Upload de Laudo</h5>
+                                <div class="mb-4">
+                                    <label for="laudo" class="form-label">Anexar laudo (PDF/JPG/PNG)</label>
+                                    <input class="form-control" type="file" id="laudo" name="laudo" accept=".pdf,image/*">
+                                    <div class="form-text">Opcional, mas ajuda na triagem.</div>
+                                </div>
+
+                                <h5 class="mb-3">Questionário</h5>
+                                <div class="mb-3">
+                                    <label class="form-label">Você possui alguma deficiência diagnosticada?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="diagnosticado" id="diagSim" value="Sim" required>
+                                        <label class="form-check-label" for="diagSim">Sim</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="diagnosticado" id="diagNao" value="Não" required>
+                                        <label class="form-check-label" for="diagNao">Não / Suspeita</label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Quais áreas você percebe limitações? (selecione as que se aplicam)</label>
+                                    <div class="row g-2">
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="defAuditiva" value="Auditiva">
+                                                <label class="form-check-label" for="defAuditiva">Auditiva</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="defVisual" value="Visual">
+                                                <label class="form-check-label" for="defVisual">Visual</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="defFisica" value="Física">
+                                                <label class="form-check-label" for="defFisica">Física / Mobilidade</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="defIntelectual" value="Intelectual">
+                                                <label class="form-check-label" for="defIntelectual">Intelectual</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="defPsicossocial" value="Psicossocial">
+                                                <label class="form-check-label" for="defPsicossocial">Psicossocial</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="defTEA" value="TEA">
+                                                <label class="form-check-label" for="defTEA">TEA</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="descricao" class="form-label">Descreva brevemente suas necessidades</label>
+                                    <textarea id="descricao" class="form-control" rows="4" placeholder="Ex.: dificuldade de locomoção em escadas, usa aparelho auditivo, etc." required></textarea>
+                                </div>
+
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="recursos" class="form-label">Recursos de acessibilidade utilizados</label>
+                                        <select id="recursos" class="form-select" multiple>
+                                            <option>Leitor de tela</option>
+                                            <option>Libras</option>
+                                            <option>Legenda</option>
+                                            <option>Rampa / Elevador</option>
+                                            <option>Cadeira de rodas</option>
+                                            <option>Outro</option>
+                                        </select>
+                                        <div class="form-text">Segure Ctrl (ou Cmd) para selecionar múltiplos.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="cidade" class="form-label">Cidade/UF</label>
+                                        <input type="text" id="cidade" class="form-control" placeholder="São Paulo/SP" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="consentimento" required>
+                                    <label class="form-check-label" for="consentimento">Concordo em compartilhar meus dados para contato e triagem</label>
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center">
+                                    <div class="text-muted small">Ao enviar, você pode optar por abrir um WhatsApp com seus dados.</div>
+                                    <div class="d-flex gap-2">
+                                        <button type="button" id="btnResumo" class="btn btn-secondary">Ver resumo</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fab fa-whatsapp me-2"></i>Enviar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-hands-helping me-2"></i>Comunidade de Apoio e Conexão</h5>
+                    <p><i class="fas fa-phone me-2"></i>(12) 3456-7890</p>
+                    <p><i class="fas fa-envelope me-2"></i>comunidadeapoio@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Rua Prates, 194 - Bom Retiro, São Paulo - SP</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <div class="social-links mb-3">
+                        <a href="#" class="text-primary me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-primary me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-primary"><i class="fab fa-whatsapp fa-2x"></i></a>
+                    </div>
+                    <p>© 2024 Comunidade de Apoio e Conexão</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    (function() {
+        const form = document.getElementById('form-cadastro');
+        const btnResumo = document.getElementById('btnResumo');
+
+        function getCheckedValues(selectors) {
+            return selectors
+                .map(id => document.getElementById(id))
+                .filter(el => el && el.checked)
+                .map(el => el.value);
+        }
+
+        function getMultiSelectValues(selectEl) {
+            return Array.from(selectEl.selectedOptions).map(o => o.value);
+        }
+
+        function montarResumo() {
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const nascimento = document.getElementById('nascimento').value;
+            const diagnosticado = (document.querySelector('input[name="diagnosticado"]:checked')?.value) || '';
+            const areas = getCheckedValues(['defAuditiva','defVisual','defFisica','defIntelectual','defPsicossocial','defTEA']);
+            const descricao = document.getElementById('descricao').value.trim();
+            const recursos = getMultiSelectValues(document.getElementById('recursos'));
+            const cidade = document.getElementById('cidade').value.trim();
+
+            const resumo = {
+                nome, email, telefone, nascimento, diagnosticado, areas, descricao, recursos, cidade
+            };
+
+            return resumo;
+        }
+
+        function salvarLocal(resumo) {
+            try {
+                localStorage.setItem('cadastroResumo', JSON.stringify(resumo));
+            } catch (e) {
+                console.warn('Falha ao salvar localmente', e);
+            }
+        }
+
+        function abrirWhatsApp(resumo) {
+            const phone = '5511999999999';
+            const texto = `Cadastro:%0A` +
+                `- Nome: ${encodeURIComponent(resumo.nome)}%0A` +
+                `- E-mail: ${encodeURIComponent(resumo.email)}%0A` +
+                `- Telefone: ${encodeURIComponent(resumo.telefone)}%0A` +
+                `- Nascimento: ${encodeURIComponent(resumo.nascimento)}%0A` +
+                `- Diagnosticado: ${encodeURIComponent(resumo.diagnosticado)}%0A` +
+                `- Áreas: ${encodeURIComponent(resumo.areas.join(', ') || 'N/D')}%0A` +
+                `- Recursos: ${encodeURIComponent(resumo.recursos.join(', ') || 'N/D')}%0A` +
+                `- Cidade: ${encodeURIComponent(resumo.cidade)}%0A` +
+                `- Descrição: ${encodeURIComponent(resumo.descricao)}`;
+            const url = `https://wa.me/${phone}?text=${texto}`;
+            window.open(url, '_blank');
+        }
+
+        btnResumo?.addEventListener('click', () => {
+            const resumo = montarResumo();
+            salvarLocal(resumo);
+            const preview = `Nome: ${resumo.nome}\nE-mail: ${resumo.email}\nTelefone: ${resumo.telefone}\nNascimento: ${resumo.nascimento}\nDiagnosticado: ${resumo.diagnosticado}\nÁreas: ${resumo.areas.join(', ')}\nRecursos: ${resumo.recursos.join(', ')}\nCidade: ${resumo.cidade}\nDescrição: ${resumo.descricao}`;
+            alert(preview || 'Preencha os campos para gerar o resumo.');
+        });
+
+        form?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
+            const resumo = montarResumo();
+            salvarLocal(resumo);
+            abrirWhatsApp(resumo);
+        });
+    })();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidade de Apoio </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles 1.css">
+</head>
+<body>
+    
+</body>
+</html>
